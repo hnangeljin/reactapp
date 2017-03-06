@@ -10,7 +10,16 @@ module.exports = {
           reject(err);
           return;
         }
-        resolve(posts);
+
+        if(isRaw)
+          resolve(posts);
+          else{
+            var list = [];
+            posts.forEach(function(post, i){
+              list.push(post.summary());
+            })
+            resolve(list);
+          }
       })
     })
   },
